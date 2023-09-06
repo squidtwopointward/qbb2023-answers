@@ -4,27 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-
-## read in the transcripts without using numpy
-dd = open("/Users/cmdb/qbb2023-answers/day2-homework/all_annotated.csv", "r")
-
-#Makes it read line by line
-lines = dd.readlines()
- 
-#Excluding headers
-lines = lines[1: ]
-
-start_read = []
-
-#Has to be at 0 since I excluded 1 in the previous statement.
-for line in lines:
-    line.rstrip()
-    line_list = line.split()
-    read_int = int(line_list[0])
-    start_read.append(lin_list[])
-
-#transcripts = np.loadtxt( "all_annotated.csv", delimiter=",", usecols=0, dtype="<U30", skiprows=1 )
-#print( "transcripts: ", transcripts == 'FBtr0073461' )
+transcripts = np.loadtxt( "all_annotated.csv", delimiter=",", usecols=0, dtype="<U30", skiprows=1 )
+print( "transcripts: ", transcripts == 'FBtr0073461' )
 
 samples = np.loadtxt( "all_annotated.csv", delimiter=",", max_rows=1, dtype="<U30" )[2:]
 print( "samples: ", samples[0:5] )
@@ -90,7 +71,4 @@ ax.set_ylabel('mRNA abundance (RPKI)')
 fig.savefig( "FlyData.png" )
 
 plt.show()
-
-
-
 
