@@ -44,24 +44,24 @@ import sys
 #numpy has a random funciton (np.random.uniform(-1,1))
 
 
-def slowmotion(numberofsteps):
-	x = 0
-	y = 0
+# def slowmotion(numberofsteps):
+# 	x = 0
+# 	y = 0
 
-	xlist = [x]
-	ylist =[y]
+# 	xlist = [x]
+# 	ylist =[y]
 
-	for timepoint in range(numberofsteps):
-		#How far do we move 
-		ydisplacement = np.random.uniform(-1,1)
-		xdisplacement = np.random.uniform(-1,1)
+# 	for timepoint in range(numberofsteps):
+# 		#How far do we move 
+# 		ydisplacement = np.random.uniform(-1,1)
+# 		xdisplacement = np.random.uniform(-1,1)
 
-		x = x + xdisplacement
-		y = y + ydisplacement
+# 		x = x + xdisplacement
+# 		y = y + ydisplacement
 
-		xlist.append(x)
-		ylist.append(y)
-	return[xlist, ylist]
+# 		xlist.append(x)
+# 		ylist.append(y)
+# 	return[xlist, ylist]
 
 
 #trajectory = (slowmotion(200))
@@ -107,9 +107,10 @@ def slowmotion(numberofsteps):
 #return a list allele frequency at the each point
 # Number of generation to fixation is the length of the list 
 
+#Exercise 1
 
 allele = []
-
+#Made a function of how to randomly get the frequency with the Wright-Fisher 
 def fisher(freq, pop = 100):
 	##We want to prevent the passing of 1 and 0
 	##Record the starting figure
@@ -121,38 +122,44 @@ def fisher(freq, pop = 100):
 		allele.append(freq)
 	return(allele)
 
-
-
 allelefrequency = fisher(0.3)
 
 print(allelefrequency)
 
 #How to get the number of generations
-print(len(allelefrequency))
-
-# fig, ax = plt.subplots()
-
-# ax.plot(allelefrequency)
-
-# plt.show()
-
-#print(fisher(0.2))
-
-# fig. ax = plt.subplots()
-
-# ax.plot = (fisher)
-
-# plt.show()
+#print(len(allelefrequency))
 
 
+#Exercise 2
+
+fig, ax = plt.subplots()
+for i in range(30):
+	iterations = fisher(0.4)
+ax.plot(iterations)
+
+plt.show()
+
+
+fig, ax = plt.subplots()
+
+bars = []
+for i in range(1000):
+	iterations = fisher(0.4, 1000)
+	num_freq = len(iterations)
+	bars.append(num_freq)
+
+plt.hist(bars)
+
+plt.show()
+
+
+#plt.show()
 
 
 
+#Exercise 2
 
 
-
-# 		x = x + xchange
-# 		y = y + ychange
 
 
 
