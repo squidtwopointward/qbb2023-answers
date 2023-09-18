@@ -1,0 +1,5 @@
+For any assumption in the Wright-Fisher model, how might changing that assumption affect the result? How might nature and biology violate these assumptions?
+
+
+
+ The random mating violation in nature would be that mating is non-random, whereas mates select the best mate based on a variety of factors such as genetic compatibility and proximity. With non-random mating, there is a possiblity for deviation from the original Wright-Fisher model. With this being known, there is a possibility of genetic drift occurring in the population. The results can shift and be unpredictable of the graphs, thus not a good model to study genetics within a population. 
