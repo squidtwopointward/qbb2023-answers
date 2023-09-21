@@ -2,6 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import statsmodels.formula.api as smf
 
 
 
@@ -44,9 +45,65 @@ mergedData = pd.concat([parental_age,deNovoCountDF], axis = 1, join = 'inner')
 # print(mergedData)
 
 
-#identify what i want from mergeddata
+#Scatter Plot for Maternal and Paternal 
+
+fig, ax = plt.subplots()
+fig, ax.scatter(mergedData.loc[:,'Mother_age'], mergedData.loc[:,'maternal_dnm'])
+ax.set_xlabel('Age of Mother')
+ax.set_ylabel('Maternal DNM')
+
+# fig.savefig('ex2_a.png')
 
 
-print(mergedData.loc[153567, : ])
+fig, ax = plt.subplots()
+fig, ax.scatter(mergedData.loc[:,'Father_age'], mergedData.loc[:,'paternal_dnm'])
+ax.set_xlabel('Age of Father')
+ax.set_ylabel('Paternal DNM')
+
+# fig.savefig('ex2_b.png')
+
+# plt.show()
+
+#Linear Regression for maternal 
+
+mother_model = smf.ols(formula = 'maternal_dnm ~ 1 + Mother_age', data = mergedData)
+results = mother_model.fit()
+
+print(results.summary())
+
+
+#Answer to 2.3
+# What is the “size” of this relationship? In your own words, what does this mean? Does this match what you observed in your plots in step 6?
+# Yes, the size matches the plots. There wasn't much a correlation seen with the naked eye so I didn't expect for the R squared to be high. 
+
+# Is this relationship significant? How do you know?
+# Yes the data is significant because the P on absolute T is less than 0.5.
+
+
+# Answer to 2.4 
+# I believe it'll be like 78% since the R squared for materal data is about 22%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
