@@ -92,7 +92,7 @@ results = mother_model.fit()
 # I believe it'll be like 78% since the R squared for materal data is about 22%
 
 
-
+#Answer to 2.5
 #x axis will be distribution of of materal per proband 
 
 fig, ax = plt.subplots()
@@ -103,17 +103,31 @@ ax.hist(maternal_dmns, label = "Maternal DNMs", bins = 30, alpha = 0.5)
 ax.set_xlabel('Distribution of Proband')
 ax.set_ylabel('Frequency of Probands')
 ax.set_title('Number of Probands De Novo Mutations')
+fig.savefig('ex2_c.png')
 ax.legend()
 
 
-plt.show()
+# plt.show()
+
+#Answer to 2.6
+
+
+Ttest_DMNs = sps.ttest_ind(paternal_dmns, maternal_dmns)
+print(Ttest_DMNs)
+
+#Step 2.6
+
+What statistical test did you choose? Why?
+      I chose the independent sample t test because we are comparing two different things 
+      (maternal and paternal) within the same distrubtion (proband_id), so it seemed like the most 
+      approicate test.
 
 
 
- 
-
-
-
+Was your test result statistically significant? Interpret your result as it relates to the number of paternally
+ and maternally inherited DNMs.
+	No the results were not significant with a p vaule of 2.19 with a df of 790.0. That means paternal 
+	and maternal dmns are not closely related as we thought. 
 
 
 
