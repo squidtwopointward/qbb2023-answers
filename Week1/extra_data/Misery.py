@@ -2,7 +2,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import scipy.stats as sps
 import statsmodels.formula.api as smf
+import statsmodels.api as sm
+
 
 
 
@@ -52,6 +55,11 @@ fig, ax.scatter(mergedData.loc[:,'Mother_age'], mergedData.loc[:,'maternal_dnm']
 ax.set_xlabel('Age of Mother')
 ax.set_ylabel('Maternal DNM')
 
+maternal_dmns = mergedData["maternal_dnm"]
+# print(maternal_dmns)
+
+paternal_dmns = mergedData["paternal_dnm"]
+# print(paternal_dmns)
 # fig.savefig('ex2_a.png')
 
 
@@ -69,7 +77,7 @@ ax.set_ylabel('Paternal DNM')
 mother_model = smf.ols(formula = 'maternal_dnm ~ 1 + Mother_age', data = mergedData)
 results = mother_model.fit()
 
-print(results.summary())
+# print(results.summary())
 
 
 #Answer to 2.3
@@ -85,20 +93,24 @@ print(results.summary())
 
 
 
+#x axis will be distribution of of materal per proband 
+
+fig, ax = plt.subplots()
+
+
+ax.hist(paternal_dmns, label = "Paternal DNMs", bins = 30, alpha = 0.5)
+ax.hist(maternal_dmns, label = "Maternal DNMs", bins = 30, alpha = 0.5)
+ax.set_xlabel('Distribution of Proband')
+ax.set_ylabel('Frequency of Probands')
+ax.set_title('Number of Probands De Novo Mutations')
+ax.legend()
+
+
+plt.show()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
