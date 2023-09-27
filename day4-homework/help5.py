@@ -2,8 +2,10 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-
-import sys
+import pandas as pd
+import scipy.stats as stats
+import statsmodels.formula.api as smf
+import statsmodels.api as sm
 
 # Exercise 1
 
@@ -27,11 +29,16 @@ allelefrequency = fisher(0.3)
 #This should be my x axis also number of generations which is 58.
 allelegenerations = len(allelefrequency)
 print(allelegenerations)
+print(f'This is the {allelegenerations} of generations')
 # y axis would be the frequency of the allele
 fig, ax = plt.subplots()
 for i in range(1):
 	frequency1 = allelefrequency
 	ax.plot(frequency1)
+	ax.set_xlabel('Number of Generations')
+	ax.set_ylabel('Frequency')
+	fig.savefig('Plot')
+
 plt.show()
 
 np.random.seed(24)
@@ -60,6 +67,12 @@ for i in range(30):
 	xposition = alleletrajectory[0]
 	yposition = alleletrajectory[1]
 	ax.plot(xposition,yposition)
+
+ax.set_xlabel('Number of Steps')
+ax.set_ylabel('Allele Trajectory')
+
+plt.savefig('Plot3.png')
+
 plt.show()
 
 
@@ -70,6 +83,10 @@ fig, ax = plt.subplots()
 for i in range(20):
 	frequncy2 = fisher(.7,100)
 	ax.plot(frequncy2)
+	ax.set_xlabel('Frequency of Alleles')
+	ax.set_ylabel('Movement of Trajectory')
+	fig.savefig('Multiple Trajectory')
+
 plt.show()
 
 histograms = []
@@ -78,6 +95,11 @@ for i in range(2000):
 	numberoffrequency = len(frequency3)
 	histograms.append(numberoffrequency)
 plt.hist(histograms)
+ax.set_xlabel('Number of Frequency')
+ax.set_ylabel('Allele Frequency')
+
+
+plt.savefig('Plot4.png')
 
 plt.show()
 
@@ -93,8 +115,8 @@ for i in range(50):
 	averageof50 = len(iterations)
 	popof50.append(averageof50)
 	fifty = np.mean(popof50)
-fifty_pop.append(fifty)
-population = fifty_pop.append(fifty)
+popof50.append(fifty)
+population = popof50.append(fifty)
 print(population)
 
 popof100 = []
@@ -103,8 +125,8 @@ for i in range(100):
 	averageof100 = len(iterations1)
 	popof100.append(averageof100)
 	hundred = np.mean(popof100)
-hundred_pop.append(hundred)
-population1 = hundred_pop.append(hundred)
+popof100.append(hundred)
+population1 = popof100.append(hundred)
 print(population1)
 
 popof150 = []
@@ -113,8 +135,8 @@ for i in range(150):
 	averageof150 = len(iterations2)
 	popof150.append(averageof150)
 	onefify = np.mean(popof150)
-onefify_pop.append(onefify)
-population2 = onefify_pop.append(onefify)
+popof150.append(onefify)
+population2 = popof150.append(onefify)
 print(population2)
 
 popof200 = []
@@ -123,8 +145,8 @@ for i in range(200):
 	averageof200 = len(iterations3)
 	popof200.append(averageof200)
 	twohundred = np.mean(popof200)
-twohundred_pop.append(twohundred)
-population3 = twohundred_pop.append(twohundred)
+popof200.append(twohundred)
+population3 = popof200.append(twohundred)
 print(population3)
 
 popof250 = []
@@ -133,8 +155,8 @@ for i in range(250):
 	averageof250 = len(iterations4)
 	popof250.append(averageof250)
 	twofifty = np.mean(popof250)
-twofifty_pop.append(twofifty)
-population4 = twofifty_pop.append(twofifty)
+popof250.append(twofifty)
+population4 = popof250.append(twofifty)
 print(population4)
 
 
@@ -145,66 +167,71 @@ plt.scatter(population3, averageof200)
 plt.scatter(population4, averageof250)
 plt.xlabel("Average Fixation Time")
 plt.ylabel("Size of the Population")
+plt.savefig('Plot5.png')
 
 plt.show()
 
 
-avgof50 = []
+avgof501 = []
+threehundred = []
 for i in range(300):
 	iterations11 = fisher(0.3)
 	averageof501 = len(iterations11)
-	avgof50.append(averageof501)
-	threehundred = np.mean(avgof50)
-threehundred_pop.append(threehundred)
-population_threehundred = threehundred_pop.append(threehundred_pop)
+	avgof501.append(averageof501)
+	threehundred = np.mean(avgof501)
+avgof501.append(threehundred)
+threehundred.append(threehundred)
 
 
-avgof100 = []
+avgof1001 = []
+threehundred1 = []
 for i in range(300):
 	iterations21 = fisher(0.5)
 	averageof1001 = len(iterations21)
-	avgof100.append(averageof1001)
-	threehundred1 = np.mean(avgof100)
-threehundred1_pop.append(threehundred1)
-population_threehundred1 = threehundred_pop.append(threehundred1)
+	avgof1001.append(averageof1001)
+	threehundred1 = np.mean(avgof1001)
+avgof1001.append(threehundred1)
+threehundred1.append(threehundred1)
 
-avgof150 = []
+avgof1501 = []
+threehundred2 = []
 for i in range(300):
 	iterations31 = fisher(0.6)
 	averageof1501 = len(iterations31)
-	avgof150.append(averageof1501)
-	threehundred2 = np.mean(avgof150)
+	avgof1501.append(averageof1501)
+	threehundred2 = np.mean(avgof1501)
+avgof1501.append(threehundred2)
 threehundred2.append(threehundred2)
-population_threehundred2 = threehundred2.append(threehundred2)
 
-avgof200 = []
+avgof2001 = []
+threehundred3 = []
 for i in range(300):
 	iterations41 = fisher(0.1)
 	averageof2001 = len(iterations41)
-	avgof200.append(averageof2001)
-	threehundred3 = np.mean(avgof200)
-twohundred3_pop.append(threehundred3)
-population_threehundred3 = threehundred3_pop.append(threehundred3)
+	avgof2001.append(averageof2001)
+	threehundred3 = np.mean(avgof2001)
+avgof2001.append(threehundred3)
+threehundred3.append(threehundred3)
 
-avgof250 = []
+avgof2501 = []
+threehundred4 = []
 for i in range(300):
 	iterations51 = fisher(0.8)
 	averageof2501 = len(iterations51)
-	avgof250.append(avgof250)
+	avgof2501.append(averageof2501)
 	threehundred4 = np.mean(avgof2501)
-threehundred4_pop.append(threehundred4)
-population_threehundred4 = threehundred4_pop.append(threehundred4)
+avgof2501.append(threehundred4)
+threehundred4.append(threehundred4)
 
-
-
-plt.scatter(population_threehundred, averageof501)
-plt.scatter(population_threehundred1, averageof1001)
-plt.scatter(population_threehundred2, averageof1501)
-plt.scatter(population_threehundred3, averageof2001)
-plt.scatter(population_threehundred4, averageof2501)
+fig, ax = plt.subplots()
+plt.plot(threehundred, avgof501)
+plt.plot(threehundred1, avgof1001)
+plt.plot(threehundred2, avgof1501)
+plt.plot(threehundred3, avgof2001)
+plt.plot(threehundred4, avgof2501)
 plt.xlabel("Average Fixation Time")
 plt.ylabel("Allele Frequency")
-
+plt.savefig('Plot of allele frequency vs. time to fixation.png')
 
 plt.show()
 
