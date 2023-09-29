@@ -5,6 +5,7 @@ import pandas as pd
 import scipy.stats as stats
 import statsmodels.formula.api as smf
 import statsmodels.api as sm
+import sys
 
 
 
@@ -31,8 +32,8 @@ def simulation(coverage, lengthofgenome, readlength, figname):
 	sim_0cov = lengthofgenome - np.count_nonzero(coveragearray)
 	sim_0cov_pct = 100 * sim_0cov / lengthofgenome
 
-	print(f'In the simulation, there are {sim_0cov} bases with 0 coverage')
-	print(f'This is {sim_0cov_pct}% of the genome')
+	# print(f'In the simulation, there are {sim_0cov} bases with 0 coverage')
+	# print(f'This is {sim_0cov_pct}% of the genome')
 
 
 	#Get the poisson distribution Mean coverage would be coverage
@@ -44,7 +45,7 @@ def simulation(coverage, lengthofgenome, readlength, figname):
 
 	#This is for the normal distrubution 
 	y_normal = stats.norm.pdf(x, loc = coverage, scale = np.sqrt(coverage) * lengthofgenome)
-	print(y_normal)
+	# print(y_normal)
 
 
 	fig, ax = plt.subplots()
@@ -56,8 +57,44 @@ def simulation(coverage, lengthofgenome, readlength, figname):
 	ax.legend()
 	fig.tight_layout()
 	fig.savefig('ex1_10x_cov1.png')
-	plt.show()
+	# plt.show()
 
 
 simulation(10, 1_000_000, 100, 'ex1_10x_cov.png')
-print(simulation)
+# print(simulation)
+
+
+
+
+####Exercise 2.1
+
+dnareads = ['ATTCA', 'ATTGA', 'CATTG', 'CTTAT', 'GATTG', 'TATTT', 'TCATT', 'TCTTA', 'TGATT', 'TTATT', 'TTCAT', 'TTCTT', 'TTGAT']
+
+graph = set()
+
+
+generationofkmers =  []
+k = 3
+
+for reads in dnareads:
+	# print(reads) # We got all the reads 
+	for i in range(len(reads) - k):
+		kmer1 = reads[i: i + k]
+		kmer2 = reads[i + 1: i+ 1+ k]
+		# print(kmer1, kmer2)
+		edge = kmer1 + " -> " + kmer2
+		graph.add(edge)
+	print(edge)
+
+####Exercise 2.2
+
+sys.stdout = open('data.txt', 'w')
+for edge in graph:
+	sys.stdout.write(edge + '\n')
+
+
+
+
+
+
+
