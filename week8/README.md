@@ -1,5 +1,18 @@
 Link to any outside resources in this README
 
+#chicago --raw/PCHIC_Data/ --output results.txt
+
+
+enrichment_data_path='/Users/cmdb/qbb2023-answers/week8/output_feature_overlaps.txt'
+
+echo "enrichment_data_path: $enrichment_data_path"
+echo -e 'Regulatory_Feature\tOLwithSI\tMean_Num_Random_Fragments'
+
+awk '{print $1, $2, $3}' $enrichment_data_path > extracted_data.txt
+
+
+
+
 Do these enrichments make sense to you? Are any surprising? Explain your reasoning briefly for each feature.
 No these enrichments do not make sense to me, so therefore I can determine if this is surprising or not.
 
